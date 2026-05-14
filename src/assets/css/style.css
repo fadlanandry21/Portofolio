@@ -370,11 +370,6 @@ body {
   transition: transform 0.3s ease;
 }
 
-/* .service-card.web-design, .service-card.frontend, .service-card.backend.service-card.backend {
-            background-color: #f5f5f5;
-            color: #333333;
-        } */
-
 .service-card.web-design,
 .service-card.frontend,
 .service-card.backend {

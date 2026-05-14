@@ -5,7 +5,7 @@ import Navbar from "@/components/layout/navbar.vue";
 import HeroSection from "@/components/sections/HeroSection.vue";
 import AboutSection from "@/components/sections/AboutSection.vue";
 import ServiceSection from "@/components/sections/ServiceSection.vue";
-import ProjectSection from "@/components/sections/ProjectSection.vue";
+import TechStack from "@/components/sections/TechStack.vue";
 </script>
 
 
