@@ -21,7 +21,7 @@
 
       <!-- SKILLS -->
       <div class="programming-section">
-        <h2 class="programming-title">PROGRAMMING SKILL</h2>
+        <h2 class="programming-title">Tech Stack</h2>
 
         <div class="skills-container">
           <div
@@ -49,8 +49,6 @@
 import { ref, onMounted } from 'vue'
 
 const sectionRef = ref(null)
-
-// 🔥 DATA STATS
 const stats = ref([
   {
     title: 'Year Of Experience',
@@ -72,14 +70,14 @@ const stats = ref([
   },
 ])
 
-// 🔥 DATA SKILLS
+
 const skills = [
   { name: 'HTML', percent: 85, class: 'circle-php' },
   { name: 'CSS', percent: 45, class: 'circle-js' },
   { name: 'JS', percent: 27, class: 'circle-dart' },
+  { name: 'Node', percent: 80, class: 'circle-node' },
 ]
 
-// 🔥 COUNTER ANIMATION
 const animateCounters = () => {
   stats.value.forEach((item) => {
     const increment = item.target / 100
@@ -97,7 +95,6 @@ const animateCounters = () => {
   })
 }
 
-// 🔥 INTERSECTION OBSERVER (biar animasi pas muncul)
 onMounted(() => {
   const observer = new IntersectionObserver(
     (entries) => {
