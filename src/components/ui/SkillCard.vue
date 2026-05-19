@@ -3,41 +3,37 @@
     <div class="circle-wrapper">
       <svg class="progress-ring" width="180" height="180">
 
-        <!-- Background -->
         <circle
           class="circle-bg"
           cx="90"
           cy="90"
-          r="70"
+          r="80"
         />
 
-        <!-- Progress -->
         <circle
           class="circle-progress"
           cx="90"
           cy="90"
-          r="70"
+          r="80"
           :style="circleStyle"
         />
       </svg>
 
-      <!-- CONTENT -->
       <div class="skill-content">
         <i :class="`fa-brands fa-${icon}`"></i>
 
         <h3>{{ animatedPercent }}%</h3>
       </div>
-    </div>
-
-    <p class="skill-name">
-      {{ name }}
-    </p>
+      
+      <p class="skill-name">
+        {{ name }}
+      </p>
+    </div >
   </div>
 </template>
 
 <script setup>
 import { computed, ref, onMounted } from 'vue'
-
 const props = defineProps({
   name: String,
   percent: Number,
@@ -91,37 +87,36 @@ const circleStyle = computed(() => ({
 .circle-bg {
   fill: transparent;
   stroke: #111;
-  stroke-width: 8;
+  stroke-width: 11;
 }
 
 .circle-progress {
   fill: transparent;
-  stroke: #00ffd5;
-  stroke-width: 8;
+  stroke: #ffd700;
+  stroke-width: 11;
   stroke-linecap: round;
 
   transition: stroke-dashoffset 1s ease;
 }
 
 .skill-content {
+  margin: 100px 0 100px;
   position: absolute;
   inset: 0;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   color: white;
 }
 
 .skill-content i {
-  font-size: 3rem;
-  margin-bottom: 10px;
+  font-size: 2.9rem;
+  margin-bottom: 7px;
 }
 
 .skill-content h3 {
-  font-size: 2rem;
+  font-size: 1.6rem;
 }
 
 .skill-name {

@@ -16,4 +16,10 @@ export const skills = [
     percent: 82,
     icon: 'js',
   },
+
+  {
+    name: 'Vue',
+    percent: 50,
+    icon: 'vuejs'
+  }
 ]

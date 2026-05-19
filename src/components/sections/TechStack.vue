@@ -2,7 +2,7 @@
   <section class="tech-stack-section">
 
     <h2 class="section-title">
-      TECH STACK
+      Tech Stack
     </h2>
 
     <div class="skills-grid">
@@ -21,20 +21,17 @@
 
 <script setup>
 import SkillCard from '@/components/ui/SkillCard.vue'
-import { skills } from '@/data/skills'
+import { skills } from '@/data/Skills.js'
 </script>
 
 <style scoped>
 .tech-stack-section {
-  padding: 100px 5%;
-  background: #000;
+  padding: 40px 80px 50px;
 }
 
 .section-title {
   color: white;
-  text-align: center;
   margin-bottom: 50px;
-
   font-size: 3rem;
 }
 

@@ -18,7 +18,7 @@ import TechStack from "@/components/sections/TechStack.vue";
 <HeroSection/>
 <AboutSection/>
 <ServiceSection/>
-<ProjectSection />
+<TechStack />
 
 <Footer />
 </template>
