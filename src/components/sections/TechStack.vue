@@ -1,7 +1,7 @@
 <template>
   <section class="tech-stack-section">
 
-    <h2 class="section-title">
+    <h2 class="techStack-title">
       Tech Stack
     </h2>
 
@@ -26,10 +26,12 @@ import { skills } from '@/data/Skills.js'
 
 <style scoped>
 .tech-stack-section {
-  padding: 40px 80px 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 80px 50px;
 }
 
-.section-title {
+.techStack-title {
   color: white;
   margin-bottom: 50px;
   font-size: 3rem;

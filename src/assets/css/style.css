@@ -413,134 +413,25 @@ body {
   text-align: justify;
 }
 /* Project & Porto */
-.container-project {
-  max-width: 1200px;
-  margin: 0 auto;
+.tech-stack-section {
+  padding: 50px 80px 50px;
 }
 
-.project-section {
-  text-align: start;
-  padding: 50px 80px;
-}
-
-.project-title {
+.techStack-title {
+  color: rgb(0, 0, 0);
+  margin-bottom: 50px;
   font-size: 3rem;
-  font-weight: bold;
-  margin-bottom: 60px;
-  letter-spacing: 2px;
 }
 
-.stats-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: start;
-  margin:30px 0 100px;
+.skills-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(200px, 1fr));
+
   gap: 40px;
 }
 
-.stat-item {
-  min-width: 200px;
-}
-
-.stat-title {
-  font-size: 1.5rem;
-  font-weight: 500;
-  margin-bottom: 10px;
-  color: #ccc;
-}
-
-.stat-number {
-  font-size: 1.3rem;
-  font-weight: bold;
-  color: white;
-}
-
-.programming-section {
-  margin-top: 15%;
-}
-
-.programming-title {
-  font-size: 2.3rem;
-  font-weight: bold;
-  margin-bottom: 80px;
-  letter-spacing: 1px;
-}
-
-.skills-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 60px;
-}
-
-.skill-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-}
-
-.circle-container {
-  position: relative;
-  width: 190px;
-  height: 190px;
-  margin-bottom: 20px;
-}
-
-.circle-bg {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: conic-gradient(#444 0deg, #444 360deg);
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.circle-bg::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 150px;
-  height: 150px;
-  background: #1a1a1a;
-  border-radius: 50%;
-}
-
-.percentage {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 1.8rem;
-  font-weight: bold;
-  z-index: 2;
-}
-
-.circle-php {
-  background: conic-gradient(#888 0deg, #888 306deg, #444 306deg, #444 360deg);
-}
-
-.circle-js {
-  background: conic-gradient(#888 0deg, #888 162deg, #444 162deg, #444 360deg);
-}
-
-.circle-dart {
-  background: conic-gradient(#888 0deg, #888 97deg, #444 97deg, #444 360deg);
-}
-
-
-
-.skill-name {
-  font-size: 1.5rem;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
 
 /* Portofolio */
 .portfolio-section {

@@ -111,17 +111,18 @@ const circleStyle = computed(() => ({
 }
 
 .skill-content i {
-  font-size: 2.9rem;
+  font-size: 2.5rem;
   margin-bottom: 7px;
 }
 
 .skill-content h3 {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
 }
 
 .skill-name {
   margin-top: 20px;
   color: #888;
   letter-spacing: 2px;
+  font-size: 1.1rem
 }
 </style>
