@@ -440,7 +440,7 @@ body {
   padding: 20px 50px;
 }
 
-.section-header {
+.section-header { 
   display: flex;
   justify-content: space-between;
   align-items: center;
