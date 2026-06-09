@@ -4,7 +4,7 @@ import { Projects } from '@/data/Projects.js';
 </script>
 
 <template>
-    <section class="project-section" id="projects">
+    <section class="project-section" id="Project">
         <div class="section-header">
             <h2 class="section-title">My Latest Project's</h2>
 
@@ -29,7 +29,7 @@ import { Projects } from '@/data/Projects.js';
   column-gap: 20px;
 }
 
-.project-grid > .project-section {
+.project-grid > * {
   break-inside: avoid;
   margin-bottom: 20px;
 }

@@ -4,7 +4,7 @@
       <div class="about-content">
         <div class="about-title" data-cursor-hover>ABOUT<br />ME</div>
         <div class="about-text">
-          <p>
+          <p data-cursor-hover>
             Hai, Saya Fadlan Andry Al Faris, seorang pelajar di SMKN 1
             Banyuwangi. yang fokus mendalami bidang web programming. Dengan
             semangat belajar dan ketertarikan besar pada teknologi, saya terus
@@ -12,13 +12,13 @@
             memahami perkembangan dunia digital.
           </p>
 
-          <p>
+          <p data-cursor-hover>
             Bagi saya, pemrograman bukan hanya soal menulis kode, tetapi juga
             cara untuk menghadirkan ide menjadi nyata "where innovation meets
             creativity" Dengan prinsip itu, saya berkomitmen untuk terus tumbuh,
             berinovasi, dan menciptakan solusi digital yang bermanfaat.
           </p>
-          <p>
+          <p data-cursor-hover>
             Selain itu, saya juga percaya bahwa setiap proses belajar adalah
             investasi jangka panjang. Karena itu, saya terbuka untuk
             berkolaborasi, bertukar ide, dan mengeksplorasi teknologi baru agar
