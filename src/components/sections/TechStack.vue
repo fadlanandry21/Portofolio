@@ -27,7 +27,7 @@ import { skills } from '@/data/Skills.js'
 <style scoped>
 .tech-stack-section {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 10% auto;
   padding: 20px 80px 50px;
 }
 

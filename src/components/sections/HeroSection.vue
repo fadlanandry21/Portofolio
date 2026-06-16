@@ -1,6 +1,7 @@
 <script setup>
 import { onBeforeMount, onBeforeUnmount, onMounted, ref } from "vue";
 import Terminaltypewritter from "../animation/Terminaltypewritter.vue";
+import HeroImage from "../ui/HeroImage.vue";
 
 const social = [
   {
@@ -69,8 +70,9 @@ const phrases = ["HELLO, I'M", "A DEVELOPER", "JUNIOR SOFTWARE ENGINEER"];
       </a>
     </div>
 
-    <div class="hero-image">
+    <!-- <div class="hero-image">
       <img src="/assets/img/porto-profile.webp" alt="" class="profile-image" />
-    </div>
+    </div> -->
+    <HeroImage data-cursor-hover />
   </main>
 </template>
