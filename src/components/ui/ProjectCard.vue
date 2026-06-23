@@ -109,7 +109,7 @@ defineProps({
 .project-year {
   font-size: 12px;
   color: #555;
-} 
+}
 
 .project-link {
   font-size: 12px;
