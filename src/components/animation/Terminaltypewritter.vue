@@ -12,7 +12,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 const props = defineProps({
   phrases: {
     type: Array,
-    default: () => ["HELLO, I'M", 'A DEVELOPER'],
+    required: true,
   },
   color: {
     type: String,
