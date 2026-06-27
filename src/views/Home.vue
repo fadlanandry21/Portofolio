@@ -18,8 +18,8 @@ import ProjectSection from "@/components/sections/ProjectSection.vue";
 
 <HeroSection/>
 <AboutSection/>
-<ServiceSection/>
 <TechStack />
+<ServiceSection/>
 <ProjectSection />
 
 <Footer />

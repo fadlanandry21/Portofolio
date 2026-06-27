@@ -1,37 +1,3 @@
-<template>
-  <div class="skill-card">
-    <div class="circle-wrapper">
-      <svg class="progress-ring" width="180" height="180">
-
-        <circle
-          class="circle-bg"
-          cx="90"
-          cy="90"
-          r="80"
-        />
-
-        <circle
-          class="circle-progress"
-          cx="90"
-          cy="90"
-          r="80"
-          :style="circleStyle"
-        />
-      </svg>
-
-      <div class="skill-content">
-        <i :class="`fa-brands fa-${icon}`"></i>
-
-        <h3>{{ animatedPercent }}%</h3>
-      </div>
-      
-      <p class="skill-name">
-        {{ name }}
-      </p>
-    </div >
-  </div>
-</template>
-
 <script setup>
 import { computed, ref, onMounted } from 'vue'
 const props = defineProps({
@@ -67,6 +33,43 @@ const circleStyle = computed(() => ({
   strokeDashoffset: offset.value,
 }))
 </script>
+
+
+
+<template>
+  <div class="skill-card">
+    <div class="circle-wrapper">
+      <svg class="progress-ring" width="180" height="180">
+
+        <circle
+          class="circle-bg"
+          cx="90"
+          cy="90"
+          r="80"
+        />
+
+        <circle
+          class="circle-progress"
+          cx="90"
+          cy="90"
+          r="80"
+          :style="circleStyle"
+        />
+      </svg>
+
+      <div class="skill-content">
+        <i :class="`fa-brands fa-${icon}`"></i>
+
+        <h3>{{ animatedPercent }}%</h3>
+      </div>
+      
+      <p class="skill-name">
+        {{ name }}
+      </p>
+    </div >
+  </div>
+</template>
+
 
 <style scoped>
 
