@@ -73,7 +73,7 @@ async function handleSubmit() {
 
 
 <template>
-  <section class="contact-section" id="contact">
+  <section class="contact-item" id="contact">
     <div class="contact-inner">
 
       <span class="section-label">Contact</span>
@@ -185,9 +185,10 @@ async function handleSubmit() {
 
 
 <style scoped>
-.contact-section {
+.contact-item {
   background: #0e0e0e;
   padding: 100px 0;
+  border-radius: 15px;
 }
 
 .contact-inner {
