@@ -3,6 +3,7 @@ import { onBeforeMount, onBeforeUnmount, onMounted, ref } from "vue";
 import Terminaltypewritter from "../animation/Terminaltypewritter.vue";
 import HeroImage from "../ui/HeroImage.vue";
 import { Icon } from "@iconify/vue";
+import RoleText from "../animation/RoleText.vue";
 
 const social = [
   {
@@ -45,7 +46,7 @@ const phrases = ["HELLO, I'M", "JUNIOR SOFTWARE ENGINEER",];
     <div class="hero-content">
       <Terminaltypewritter :phrases="phrases" style="color: #ffffff" />
       <h1 class="name" data-cursor-hover>Fadlan Andry Al Faris.</h1>
-      <span class="role">"Where Innovation, Meets Creativity."</span>
+      <RoleText />
 
       <!-- Social Links -->
       <div class="social-link" data-cursor-hover>

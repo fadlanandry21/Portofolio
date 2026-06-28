@@ -55,7 +55,7 @@ onUnmounted(() => {
     <div class="section-header">
       <h2 class="section-title">My Latest Projects</h2>
 
-      <router-link to="/projects" class="see-all-link">
+      <router-link to="/projects" class="see-all-link" data-cursor-hover>
         View All →
       </router-link>
     </div>
@@ -75,91 +75,40 @@ onUnmounted(() => {
 <style scoped>
 .project-section {
   max-width: 1200px;
-
-  margin:0 auto;
-
+  margin: 0 auto;
   padding: 80px;
 }
 
 .section-header {
   display: flex;
-
   justify-content: space-between;
-
   align-items: center;
-
   margin-bottom: 40px;
 }
 
 .section-title {
   font-size: 42px;
-
   font-weight: 700;
 }
 
 .see-all-link {
   color: #888;
-
   text-decoration: none;
+    font-size: 0.95rem;
+  transition: color 0.3s ease;
 }
 
 .slider-wrapper {
   position: relative;
-
   overflow: hidden;
+  padding: 10px;
 }
 
-/* fade kiri */
-
-.slider-wrapper::before {
-  content: "";
-
-  position: absolute;
-
-  left: 0;
-
-  top: 0;
-
-  width: 140px;
-
-  height: 100%;
-
-  background: linear-gradient(to right, #000, transparent);
-
-  z-index: 2;
-
-  pointer-events: none;
-}
-
-/* fade kanan */
-
-.slider-wrapper::after {
-  content: "";
-
-  position: absolute;
-
-  right: 0;
-
-  top: 0;
-
-  width: 140px;
-
-  height: 100%;
-
-  background: linear-gradient(to left, #000, transparent);
-
-  z-index: 2;
-
-  pointer-events: none;
-}
 
 .slider-track {
   display: flex;
-
   gap: 24px;
-
   width: max-content;
-
   will-change: transform;
 }
 

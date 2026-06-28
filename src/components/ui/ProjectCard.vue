@@ -65,7 +65,7 @@ defineProps({
 
 .project-card:hover{
     transform:translateY(-8px);
-    border-color:#333;
+    border-color:#d0ff00;
 }
 
 .card-image img{

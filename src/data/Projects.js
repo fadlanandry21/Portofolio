@@ -5,6 +5,7 @@ export const Projects = [
     description: 'Website layanan tour dan travel Banyuwangi.',
     tags: ['Tour & Travel', 'UI/UX', 'WordPress'],
     link: 'https://banyuwangivanjava.com',
+    Image: 'vanjava.webp'
   },
 
   {
