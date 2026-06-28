@@ -1,5 +1,7 @@
 <script setup>
 import { computed, ref, onMounted } from 'vue'
+import { Icon } from "@iconify/vue"
+
 const props = defineProps({
   name: String,
   percent: Number,
@@ -95,7 +97,7 @@ const circleStyle = computed(() => ({
 
 .circle-progress {
   fill: transparent;
-  stroke: #ffd700;
+  stroke: #d2ff00;
   stroke-width: 11;
   stroke-linecap: round;
 

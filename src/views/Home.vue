@@ -7,6 +7,7 @@ import AboutSection from "@/components/sections/AboutSection.vue";
 import ServiceSection from "@/components/sections/ServiceSection.vue";
 import TechStack from "@/components/sections/TechStack.vue";
 import ProjectSection from "@/components/sections/ProjectSection.vue";
+import ContactSection from "@/components/sections/ContactSection.vue";
 </script>
 
 
@@ -21,6 +22,7 @@ import ProjectSection from "@/components/sections/ProjectSection.vue";
 <TechStack />
 <ServiceSection/>
 <ProjectSection />
+<ContactSection/>
 
 <Footer />
 </template>
