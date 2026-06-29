@@ -34,32 +34,46 @@ const segments = [
   gap: 5px;
 }
 
-/* semua segment mulai tak terlihat, reveal via flicker sekali */
+
+/*
+  Satu siklus = 11s total per segment:
+  0–5%   = flicker masuk  (~0.55s)
+  5–95%  = diam / visible (~9.9s)
+  95–99% = fade out cepat (~0.44s)
+  99–100%= gelap sesaat sebelum cycle ulang
+*/
 .neon-segment {
   opacity: 0;
-  animation: flicker 0.5s steps(1) var(--delay) forwards;
+  animation: neonCycle 11s steps(1) var(--delay) infinite;
 }
 
-
-.neon-segment.dim     { color: #ccc; }
+.neon-segment.dim     { color: #e0e0e0; }
 .neon-segment.mid     { color: #ccc; }
 .neon-segment.keyword {
   color: #d2ff00;
   text-shadow: 0 0 8px #d2ff00aa, 0 0 24px #d2ff0044;
 }
 
-/* flicker masuk: 3 kedipan cepat lalu stabil */
-@keyframes flicker {
-  0%   { opacity: 0; }
-  20%  { opacity: 1; }
-  30%  { opacity: 0; }
-  50%  { opacity: 1; }
-  60%  { opacity: 0.4; }
-  80%  { opacity: 1; }
-  100% { opacity: 1; }
+@keyframes neonCycle {
+  /* — flicker masuk — */
+  0%    { opacity: 0; }
+  1%    { opacity: 1; }
+  2%    { opacity: 0; }
+  3%    { opacity: 1; }
+  4%    { opacity: 0.4; }
+  5%    { opacity: 1; }
+  /* — idle: teks menyala stabil — */
+  90%   { opacity: 1; }
+  /* — keluar cepat — */
+  93%   { opacity: 0; }
+  /* — gelap hingga cycle berikutnya — */
+  99%   { opacity: 0; }
+  100%  { opacity: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .neon-segment { opacity: 1; animation: none; }
 }
 </style>
+
+
