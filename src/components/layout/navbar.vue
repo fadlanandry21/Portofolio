@@ -78,7 +78,7 @@ onBeforeUnmount(() => {
       data-cursor-hover
     >
       <img
-        src="/public/assets/img/fadddev-high-resolution-logo-transparent.png"
+        src="/public/assets/img/Logo-Fadlan-Andry-Al-Faris/logo.webp"
         alt="fadddev logo"
       />
     </a>

@@ -91,11 +91,11 @@ async function handleSubmit() {
         <div class="contact-info">
           <div class="info-item">
             <span class="info-label">Email</span>
-            <span class="info-value">hello@fadlan.dev</span>
+            <a href="mailto:andryalfarisfadlan@gmail.com" class="info-value-mail" data-cursor-hover>andryalfarisfadlan@gmail.com</a>
           </div>
           <div class="info-item">
             <span class="info-label">Based in</span>
-            <span class="info-value">East Java, Indonesia</span>
+            <span class="info-value">Banyuwangi East Java, Indonesia</span>
           </div>
           <div class="divider"></div>
           <div class="availability">
@@ -261,6 +261,20 @@ async function handleSubmit() {
   font-family: 'Space Mono', monospace;
   font-size: 14px;
   color: #d2ff00;
+  text-decoration: none;
+}
+
+.info-value-mail {
+  font-family: 'Space Mono', monospace;
+  font-size: 14px;
+  color: #d2ff00;
+  text-decoration: none;
+}
+
+.info-value-mail:hover {
+  color: #9fc300;
+  animation: all ease-in 2s;
+
 }
 
 .divider {
