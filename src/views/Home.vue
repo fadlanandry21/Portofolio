@@ -1,5 +1,6 @@
 <script setup>
 import CustomCursor from "@/components/animation/CustomCursor.vue";
+import CustomViewCursor from "@/components/animation/CustomViewCursor.vue";
 import Footer from "@/components/layout/footer.vue";
 import Navbar from "@/components/layout/navbar.vue";
 import HeroSection from "@/components/sections/HeroSection.vue";
@@ -8,12 +9,14 @@ import ServiceSection from "@/components/sections/ServiceSection.vue";
 import TechStack from "@/components/sections/TechStack.vue";
 import ProjectSection from "@/components/sections/ProjectSection.vue";
 import ContactSection from "@/components/sections/ContactSection.vue";
+import ShowCase from "@/components/sections/ShowCase.vue";
 </script>
 
 
 <template>
 
 <CustomCursor/>
+<custom-view-cursor/>
 
 <Navbar/>
 
@@ -23,7 +26,7 @@ import ContactSection from "@/components/sections/ContactSection.vue";
 <ServiceSection/>
 <ProjectSection />
 <ContactSection/>
-
+<!-- <ShowCase /> -->
 <Footer />
 </template>
 

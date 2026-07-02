@@ -8,10 +8,10 @@ const menuOpen = ref(false);
 
 const links = [
   { id: "home", name: "Home", icon: "material-symbols:home-rounded" },
-  { id: "About", name: "About", icon: "material-symbols:home-rounded" },
-  { id: "Service", name: "Service", icon: "material-symbols:home-rounded" },
-  { id: "Project", name: "Project", icon: "material-symbols:home-rounded" },
-  { id: "contact", name: "Contact", icon: "material-symbols:home-rounded" },
+  { id: "About", name: "About", icon: "proicons:person-circle" },
+  { id: "Service", name: "Solution", icon: "hugeicons:ai-idea" },
+  { id: "Project", name: "Project", icon: "mdi:code" },
+  { id: "contact", name: "Contact", icon: "bxs:contact" },
 ];
 
 const scrollToSection = (id) => {
@@ -123,9 +123,10 @@ onBeforeUnmount(() => {
             :key="link.id"
             :style="`--i: ${links.indexOf(link)}`"
             :icon="link.icon"
+            class="dropdown-item"
           >
-            <div class="icon-menu">
-              <icon :icon="link.icon" width="10"></icon>
+            <div class="icon-box">
+              <Icon :icon="link.icon" width="20" />
             </div>
             <a
               data-cursor-hover
@@ -299,11 +300,35 @@ onBeforeUnmount(() => {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0.25rem 1.20rem;
+}
+
+.icon-box {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  color: #d2ff00;
+  transition: all 0.25s ease;
+}
+
+
 .dropdown li a {
-  display: block;
+  flex: 1;
+  display: flex;
+  align-items: center;
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.7);
-  padding: 0.65rem 1.4rem;
+    padding: .75rem .5rem !important;
   text-decoration: none;
   letter-spacing: 0.02em;
   transition:
@@ -313,7 +338,6 @@ onBeforeUnmount(() => {
 
 .dropdown li a:hover {
   color: #d2ff00;
-  background: rgba(210, 255, 0, 0.05);
 }
 
 .dropdown li a.active {

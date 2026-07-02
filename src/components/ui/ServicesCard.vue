@@ -1,3 +1,12 @@
+<script setup>
+
+defineProps({
+    tittle: String,
+    number: String,
+    description: String
+})
+</script>
+
 <template>
     <div class="service-card web-design" data-cursor-hover>
             <div class="service-header">
@@ -10,11 +19,3 @@
           </div>
 </template>
 
-<script setup>
-
-defineProps({
-    tittle: String,
-    number: String,
-    description: String
-})
-</script>
