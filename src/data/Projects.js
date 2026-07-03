@@ -1,3 +1,12 @@
+import holiday from '../assets/img/Porto-Assets/holiday.webp'
+import garuda from '../assets/img/Porto-Assets/garudan.webp'
+import ciptakarya from '../assets/img/Porto-Assets/ckk.webp'
+import umami from '../assets/img/Porto-Assets/Umami.webp'
+import bwivanjava from '../assets/img/Porto-Assets/vanjava.webp'
+import lubes from '../assets/img/Porto-Assets/Lubes.webp'
+
+
+
 export const Projects = [
   {
     id: 1,
@@ -5,7 +14,7 @@ export const Projects = [
     description: 'Website layanan tour dan travel Banyuwangi.',
     tags: ['Tour & Travel', 'UI/UX', 'WordPress'],
     link: 'https://banyuwangivanjava.com',
-    Image: 'vanjava.webp'
+    image: bwivanjava,
   },
 
   {
@@ -14,6 +23,7 @@ export const Projects = [
     description: 'Website jasa tour Banyuwangi.',
     tags: ['WordPress', 'UI Design'],
     link: 'https://keshavamultiintermedia.semesta.biz.id/',
+    image: holiday,
   },
 
   {
@@ -22,6 +32,7 @@ export const Projects = [
     description: 'Website company profile law firm.',
     tags: ['WordPress', 'UI/UX'],
     link: 'https://garudanpartners.id/',
+    image: garuda,
   },
 
   {
@@ -30,6 +41,7 @@ export const Projects = [
     description: 'Website lembaga pendidikan global.',
     tags: ['WordPress'],
     link: 'https://ciptakaryakreasi.co.id/',
+    image: ciptakarya,
   },
 
   {
@@ -38,5 +50,15 @@ export const Projects = [
     description: 'Website company profile UMKM pangan.',
     tags: ['Website', 'WordPress'],
     link: 'https://umamichicken.id/',
+    image: umami,
+  },
+
+    {
+    id: 6,
+    title: 'Kecamatan Lubuk Besar',
+    description: 'Website resmi Kecamatan Lubuk Besar.',
+    tags: ['Website', 'WordPress'],
+    link: 'https://rioga0.wpcomstaging.com/',
+    image: lubes,
   },
 ]

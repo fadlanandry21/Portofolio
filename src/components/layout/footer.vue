@@ -2,13 +2,6 @@
 import { ref } from "vue";
 import { Icon } from "@iconify/vue";
 
-/**
- * ContactFooter.vue
- * Section CTA "Let's Build Something..." + footer bar (logo, nama, nav links).
- * Semua teks & link dibuat jadi props supaya section ini reusable
- * dan gampang diubah tanpa bongkar markup.
- */
-
 const props = defineProps({
   heading: {
     type: String,
@@ -35,9 +28,9 @@ const props = defineProps({
     type: Array,
     default: () => [
       { label: "Home", href: "#home" },
-      { label: "About", href: "#about" },
-      { label: "Project", href: "#project" },
-      { label: "Blogs", href: "#blogs" },
+      { label: "About", href: "#About" },
+      { label: "Project", href: "#Project" },
+      { label: "Contact", href: "#contact" },
     ],
   },
 });
@@ -61,7 +54,9 @@ function handleSend() {
     <div class="cta-banner">
       <div class="cta">
         <h1 class="cta__heading">{{ heading }}</h1>
-        <p class="cta__subheading">{{ subheading }}</p>
+        <p class="cta__subheading">{{ subheading }}
+          
+        </p>
 
         <form class="cta__form" @submit.prevent="handleSend">
           <input

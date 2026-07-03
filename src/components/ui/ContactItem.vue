@@ -1,186 +1,157 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed } from "vue";
+import { sendEmail } from "@/services/email";
 
-// ─── EmailJS Config ───────────────────────────────────────────────
-// 1. Daftar gratis di https://www.emailjs.com/
-// 2. Buat Email Service → salin Service ID
-// 3. Buat Email Template → salin Template ID
-// 4. Salin Public Key dari Account > API Keys
-// Ganti tiga nilai di bawah ini:
-const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID'
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID'
-const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY'
-
-// ─── State ────────────────────────────────────────────────────────
 const form = ref({
-  name: '',
-  email: '',
-  subject: '',
-  message: '',
-})
+  name: "",
+  email: "",
+  subject: "",
+  message: "",
+});
 
-const status = ref('idle') // idle | sending | sent | error
+const status = ref("idle");
 
 const btnLabel = computed(() => {
-  if (status.value === 'sending') return 'Sending...'
-  if (status.value === 'sent')    return 'Message Sent!'
-  if (status.value === 'error')   return 'Try Again'
-  return 'Send Message'
-})
+  switch (status.value) {
+    case "sending":
+      return "Sending...";
+    case "sent":
+      return "Message Sent!";
+    case "error":
+      return "Try Again";
+    default:
+      return "Send Message";
+  }
+});
 
 const statusMessage = computed(() => {
-  if (status.value === 'sent')  return `✓ Your message has been sent. I'll get back to you soon!`
-  if (status.value === 'error') return '✗ Something went wrong. Please try again or email me directly.'
-  return ''
-})
-
-// ─── Load EmailJS SDK ─────────────────────────────────────────────
-onMounted(() => {
-  if (window.emailjs) return
-  const script = document.createElement('script')
-  script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js'
-  script.onload = () => window.emailjs.init(EMAILJS_PUBLIC_KEY)
-  document.head.appendChild(script)
-})
-
-// ─── Submit handler ───────────────────────────────────────────────
-async function handleSubmit() {
-  if (status.value === 'sending') return
-
-  status.value = 'sending'
-
-  const templateParams = {
-    from_name:    form.value.name,
-    from_email:   form.value.email,
-    subject:      form.value.subject,
-    message:      form.value.message,
+  switch (status.value) {
+    case "sent":
+      return "✓ Your message has been sent. I'll get back to you soon!";
+    case "error":
+      return "✗ Something went wrong. Please try again.";
+    default:
+      return "";
   }
+});
+
+async function handleSubmit() {
+  if (status.value === "sending") return;
+
+  status.value = "sending";
 
   try {
-    await window.emailjs.send(
-      EMAILJS_SERVICE_ID,
-      EMAILJS_TEMPLATE_ID,
-      templateParams
-    )
-    status.value = 'sent'
-    form.value = { name: '', email: '', subject: '', message: '' }
-  } catch (err) {
-    console.error('EmailJS error:', err)
-    status.value = 'error'
+    await sendEmail({
+      from_name: form.value.name,
+      from_email: form.value.email,
+      subject: form.value.subject,
+      message: form.value.message,
+    });
+
+    status.value = "sent";
+
+    form.value = {
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    };
+
+    setTimeout(() => {
+      status.value = "idle";
+    }, 4000);
+  } catch (error) {
+    console.error(error);
+
+    status.value = "error";
+
+    setTimeout(() => {
+      status.value = "idle";
+    }, 4000);
   }
 }
 </script>
 
-
 <template>
-  <section class="contact-item" id="contact">
-    <div class="contact-inner">
+<form class="contact-form" @submit.prevent="handleSubmit">
 
-      <span class="section-label">Contact</span>
-      <h2 class="contact-heading">
-        Let's work<br>
-        <span class="accent">together.</span>
-      </h2>
-      <p class="contact-sub">
-        Got a project in mind? Drop me a message and I'll get back to you.
-      </p>
+<div class="form-row">
 
-      <div class="contact-grid">
+<div class="form-group">
+<label>Name</label>
 
-        <!-- Info kolom kiri -->
-        <div class="contact-info">
-          <div class="info-item">
-            <span class="info-label">Email</span>
-            <a href="mailto:andryalfarisfadlan@gmail.com" class="info-value-mail" data-cursor-hover>andryalfarisfadlan@gmail.com</a>
-          </div>
-          <div class="info-item">
-            <span class="info-label">Based in</span>
-            <span class="info-value">Banyuwangi East Java, Indonesia</span>
-          </div>
-          <div class="divider"></div>
-          <div class="availability">
-            <span class="dot"></span>
-            <span class="availability-text">Available for freelance work</span>
-          </div>
-        </div>
+<input
+v-model="form.name"
+type="text"
+placeholder="John Doe"
+required
+/>
 
-        <!-- Form kolom kanan -->
-        <form class="contact-form" @submit.prevent="handleSubmit" novalidate>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input
-                id="name"
-                v-model="form.name"
-                type="text"
-                placeholder="Jane Doe"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input
-                id="email"
-                v-model="form.email"
-                type="email"
-                placeholder="jane@example.com"
-                required
-              />
-            </div>
-          </div>
+</div>
 
-          <div class="form-group">
-            <label for="subject">Subject</label>
-            <input
-              id="subject"
-              v-model="form.subject"
-              type="text"
-              placeholder="Project Inquiry"
-              required
-            />
-          </div>
+<div class="form-group">
 
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea
-              id="message"
-              v-model="form.message"
-              placeholder="Tell me about your project..."
-              rows="5"
-              required
-            ></textarea>
-          </div>
+<label>Email</label>
 
-          <button
-            type="submit"
-            class="submit-btn"
-            :class="{
-              sending: status === 'sending',
-              sent: status === 'sent',
-              error: status === 'error'
-            }"
-            :disabled="status === 'sending'"
-          >
-            <span>{{ btnLabel }}</span>
-            <span aria-hidden="true">→</span>
-          </button>
+<input
+v-model="form.email"
+type="email"
+placeholder="john@email.com"
+required
+/>
 
-          <p
-            v-if="statusMessage"
-            class="status-msg"
-            :class="{
-              success: status === 'sent',
-              error: status === 'error'
-            }"
-            role="status"
-          >
-            {{ statusMessage }}
-          </p>
-        </form>
+</div>
 
-      </div>
-    </div>
-  </section>
+</div>
+
+<div class="form-group">
+
+<label>Subject</label>
+
+<input
+v-model="form.subject"
+type="text"
+placeholder="Project Inquiry"
+required
+/>
+
+</div>
+
+<div class="form-group">
+
+<label>Message</label>
+
+<textarea
+v-model="form.message"
+rows="6"
+placeholder="Tell me about your project..."
+required
+/>
+
+</div>
+
+<button
+type="submit"
+class="submit-btn"
+:disabled="status==='sending'"
+:class="status"
+>
+
+{{ btnLabel }}
+
+</button>
+
+<p
+v-if="statusMessage"
+class="status-msg"
+:class="status"
+>
+
+{{ statusMessage }}
+
+</p>
+
+</form>
 </template>
 
 
@@ -366,67 +337,53 @@ textarea {
 }
 
 /* ── Submit button ── */
-.submit-btn {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  background: #d2ff00;
-  color: #0e0e0e;
-  font-family: 'Space Mono', monospace;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 16px 24px;
-  border: 1px solid #d2ff00;
-  cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
-  margin-top: 4px;
+.submit-btn{
+width:100%;
+padding:16px;
+background:#d2ff00;
+color:#111;
+border:none;
+cursor:pointer;
+font-weight:bold;
+transition:.25s;
 }
 
-.submit-btn:hover:not(:disabled) {
-  background: #e8ff4d;
+.submit-btn:hover{
+background:#e6ff55;
 }
 
-.submit-btn:active:not(:disabled) {
-  transform: scale(0.98);
+.submit-btn:disabled{
+cursor:not-allowed;
+opacity:.7;
 }
 
-.submit-btn:disabled {
-  cursor: not-allowed;
+.submit-btn.sending{
+background:#444;
+color:white;
 }
 
-.submit-btn.sending {
-  background: #0e0e0e;
-  color: #d2ff00;
+.submit-btn.sent{
+background:#00c853;
+color:white;
 }
 
-.submit-btn.sent {
-  background: #0e0e0e;
-  color: #d2ff00;
-  border-color: #d2ff00;
+.submit-btn.error{
+background:#ff5252;
+color:white;
 }
 
-.submit-btn.error {
-  background: #0e0e0e;
-  color: #ff5c5c;
-  border-color: #ff5c5c;
+.status-msg{
+margin-top:15px;
+font-size:.9rem;
 }
 
-/* ── Status message ── */
-.status-msg {
-  font-family: 'Space Mono', monospace;
-  font-size: 11px;
-  text-align: center;
-  margin-top: 12px;
-  line-height: 1.6;
-  color: #555;
+.status-msg.sent{
+color:#00c853;
 }
 
-.status-msg.success { color: #d2ff00; }
-.status-msg.error   { color: #ff5c5c; }
+.status-msg.error{
+color:#ff5252;
+}
 
 /* ── Responsive ── */
 @media (max-width: 768px) {

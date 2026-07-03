@@ -39,6 +39,7 @@ const techLogos = [
   { icon: 'logos:react',      class: 't5' },
   { icon: 'logos:nodejs-icon', class: 't6' },
   { icon: 'logos:git-icon',   class: 't7' },
+  { icon: 'ic:baseline-wordpress',   class: 't8' },
 ]
 </script>
 
@@ -132,5 +133,6 @@ const techLogos = [
 .t4 { --dur: 3.5s; --delay: 0.3s; --tilt:  7deg; bottom: -14px; left:  30px;  }
 .t5 { --dur: 3.1s; --delay: 0.8s; --tilt: -5deg; top: -18px;    right: 30px;  }
 .t6 { --dur: 3.6s; --delay: 1.4s; --tilt:  6deg; top:  40px;    right: -52px; }
-.t7 { --dur: 2.8s; --delay: 0.2s; --tilt: -3deg; bottom: 30px;  right: -50px; }
+.t7 { --dur: 2.8s; --delay: 0.4s; --tilt: -3deg; bottom: 30px;  right: -45px; }
+.t8 { --dur: 3.8s; --delay: 0.6s; --tilt: -3deg; bottom: 110px;  right: -65px; }
 </style>
