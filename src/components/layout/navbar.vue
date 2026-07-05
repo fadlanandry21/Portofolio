@@ -87,7 +87,7 @@ onBeforeUnmount(() => {
       <!-- Collaborate button: hidden on mobile, visible on tablet+ -->
       <a
         data-cursor-hover
-        href="mailto:andryalfaris@gmail.com"
+        href="mailto:andryalfarisfadlan@gmail.com"
         class="btn-collaborate"
       >
         Collaborate with me ↗

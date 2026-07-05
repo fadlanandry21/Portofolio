@@ -9,11 +9,12 @@ import ServiceSection from "@/components/sections/ServiceSection.vue";
 import TechStack from "@/components/sections/TechStack.vue";
 import ProjectSection from "@/components/sections/ProjectSection.vue";
 import ContactSection from "@/components/sections/ContactSection.vue";
-import ShowCase from "@/components/sections/ShowCase.vue";
+import AnimationBackground from "@/components/animation/BackgroundAnimation.vue";
 </script>
 
 
 <template>
+<AnimationBackground />
 
 <CustomCursor/>
 <custom-view-cursor/>
@@ -26,7 +27,6 @@ import ShowCase from "@/components/sections/ShowCase.vue";
 <ServiceSection/>
 <ProjectSection />
 <ContactSection/>
-<!-- <ShowCase /> -->
 <Footer />
 </template>
 

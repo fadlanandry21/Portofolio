@@ -43,6 +43,7 @@ const phrases = ["HELLO, I'M", "JUNIOR SOFTWARE ENGINEER",];
 
 <template>
   <main class="hero" id="home">
+  
     <div class="hero-content">
       <Terminaltypewritter :phrases="phrases" style="color: #ffffff" />
       <h1 class="name" data-cursor-hover>Fadlan Andry Al Faris.</h1>
@@ -78,9 +79,6 @@ const phrases = ["HELLO, I'M", "JUNIOR SOFTWARE ENGINEER",];
       </div>
     </div>
 
-    <!-- <div class="hero-image">
-      <img src="/assets/img/porto-profile.webp" alt="" class="profile-image" />
-    </div> -->
     <HeroImage data-cursor-hover />
   </main>
 </template>
