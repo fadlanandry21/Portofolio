@@ -1,4 +1,4 @@
-<!-- <script setup>
+<script setup>
 import { ref, computed } from "vue";
 import { sendEmail } from "@/services/email";
 
@@ -70,7 +70,7 @@ async function handleSubmit() {
     }, 4000);
   }
 }
-</script> -->
+</script>
 
 <template>
 <form class="contact-form" @submit.prevent="handleSubmit">

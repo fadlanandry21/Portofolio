@@ -1,19 +1,19 @@
 export const skills = [
     {
     name: 'HTML',
-    percent: 95,
+    percent: 100,
     icon: 'html5',
   },
 
   {
     name: 'CSS',
-    percent: 88,
+    percent: 92,
     icon: 'css3-alt',
   },
 
   {
     name: 'JavaScript',
-    percent: 82,
+    percent: 80,
     icon: 'js',
   },
 

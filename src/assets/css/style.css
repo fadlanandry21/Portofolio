@@ -225,38 +225,6 @@ body {
   padding: 150px 100px 50px;
 }
 
-/* About Section */
-.about-section {
-  padding: 10px 0px 50px;
-  background-color: #1a1a1a;
-}
-
-.about-content {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 60px;
-  align-items: start;
-}
-
-.about-title {
-  font-size: 3rem;
-  font-weight: 800;
-  letter-spacing: 2px;
-  line-height: 1.1;
-}
-
-.about-text {
-  text-align: justify;
-  font-size: 0.9rem;
-  font-weight: 500;
-  line-height: 1.8;
-  color: #cccccc;
-}
-
-.about-text p {
-  margin-bottom: 20px;
-}
-
 /* Services Section */
 .services-section {
   background-color: #1a1a1a;
