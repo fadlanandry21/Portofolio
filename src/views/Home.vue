@@ -10,6 +10,8 @@ import TechStack from "@/components/sections/TechStack.vue";
 import ProjectSection from "@/components/sections/ProjectSection.vue";
 // import ContactSection from "@/components/sections/ContactSection.vue";
 import AnimationBackground from "@/components/animation/BackgroundAnimation.vue";
+import { useLenis } from "@/components/composable/UseLenis"; 
+const { lenis } = useLenis();
 </script>
 
 

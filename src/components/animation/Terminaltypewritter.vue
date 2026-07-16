@@ -12,7 +12,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 const props = defineProps({
   phrases: {
     type: Array,
-    required: true,
+    default: () => ["HELLO, I'M", 'A DEVELOPER'],
   },
   color: {
     type: String,
@@ -109,4 +109,4 @@ onUnmounted(() => {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0; }
 }
-</style>  
+</style>
