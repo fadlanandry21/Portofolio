@@ -6,7 +6,7 @@ export function useLenis() {
 
     onMounted(() => {
         lenis = new Lenis( {
-            duration: 5.5,
+            duration: 1.5,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             smoothWheel: true,
             wheelMultiplier: 1,

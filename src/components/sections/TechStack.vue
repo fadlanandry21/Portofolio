@@ -2,7 +2,7 @@
   <section class="tech-stack-section" ref="sectionRef">
     <p class="eyebrow reveal" :class="{ 'is-in': isInView }">
       <span class="eyebrow__bracket">[</span>
-      What I work with
+      Some Cool tech I use
       <span class="eyebrow__bracket">]</span>
     </p>
 
