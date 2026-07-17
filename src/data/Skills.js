@@ -1,25 +1,50 @@
 export const skills = [
-    {
-    name: 'HTML',
-    percent: 100,
-    icon: 'html5',
+  // Frontend
+  {
+    name: "Vue JS",
+    percent: 75,
+    icon: "vuejs",
+    category: "frontend",
   },
 
   {
-    name: 'CSS',
-    percent: 92,
-    icon: 'css3-alt',
+    name: "React JS",
+    percent: 30,
+    icon: "react",
+    category: "frontend",
   },
 
   {
-    name: 'JavaScript',
+    name: "Blade Laravel",
     percent: 80,
-    icon: 'js',
+    icon: "laravel",
+    category: "frontend",
   },
 
   {
-    name: 'Vue',
+    name: "Tailwind CSS",
+    percent: 60,
+    icon: "tailwind",
+    category: "frontend",
+  },
+
+  // Backend
+    {
+    name: "Laravel",
+    percent: 85,
+    icon: "laravel",
+    category: "backend",
+  },
+    {
+    name: "Inertia JS",
+    percent: 15,
+    icon: "inertia",
+    category: "backend",
+  },
+    {
+    name: "Node JS",
     percent: 50,
-    icon: 'vuejs'
-  }
-]
+    icon: "nodejs",
+    category: "backend",
+  },
+];

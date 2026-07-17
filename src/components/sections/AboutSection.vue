@@ -114,7 +114,7 @@ onBeforeUnmount(() => {
 
 
 <template>
-  <section class="about" id="about" ref="sectionRef">
+  <section class="about" id="About" ref="sectionRef">
     <div class="about__bg-grid" aria-hidden="true"></div>
 
     <div class="about__inner">
