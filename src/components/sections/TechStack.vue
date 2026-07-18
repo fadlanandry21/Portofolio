@@ -2,7 +2,7 @@
   <section class="tech-stack-section" ref="sectionRef">
     <p class="eyebrow reveal" :class="{ 'is-in': isInView }">
       <span class="eyebrow__bracket">[</span>
-      Some Cool tech i used for work
+      What I work with
       <span class="eyebrow__bracket">]</span>
     </p>
 
@@ -178,8 +178,10 @@ onBeforeUnmount(() => {
 /* ---------- GRID ---------- */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: clamp(1rem, 2.5vw, 1.75rem);
+  grid-template-columns: repeat(auto-fill, minmax(140px, 160px));
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px 10px;
   min-height: 200px;
 }
 

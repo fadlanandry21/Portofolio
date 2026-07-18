@@ -1,165 +1,229 @@
+<template>
+  <section class="contact-section" id="Contact" ref="sectionRef">
+    <div class="contact-inner">
+      <p class="section-label reveal" :class="{ 'is-in': isInView }">
+        Get In Touch
+      </p>
+
+      <h2 class="contact-heading reveal" :class="{ 'is-in': isInView }">
+        Let's build something<br />
+        <span class="accent">worth remembering.</span>
+      </h2>
+
+      <p class="contact-sub reveal" :class="{ 'is-in': isInView }">
+        Punya ide project atau sekadar mau ngobrol soal web development?
+        Kotak masuk saya selalu terbuka.
+      </p>
+
+      <div class="contact-grid">
+        <!-- LEFT: INFO -->
+        <div class="info-col reveal" :class="{ 'is-in': isInView }">
+          <a href="mailto:hello@fadlan.dev" class="info-item" data-cursor-hover>
+            <span class="info-item__icon">
+              <Icon icon="mdi:email-outline" />
+            </span>
+            <span class="info-item__text">
+              <span class="info-label">Email</span>
+              <span class="info-value">hello@fadlan.dev</span>
+            </span>
+          </a>
+
+          <div class="info-item">
+            <span class="info-item__icon">
+              <Icon icon="mdi:map-marker-outline" />
+            </span>
+            <span class="info-item__text">
+              <span class="info-label">Location</span>
+              <span class="info-value info-value--static">Banyuwangi, Indonesia</span>
+            </span>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="availability">
+            <span class="dot"></span>
+            <span class="availability-text">Available for freelance work</span>
+          </div>
+
+          <div class="socials">
+            <a href="#" class="social-link" data-cursor-hover aria-label="GitHub">
+              <Icon icon="mdi:github" />
+            </a>
+            <a href="#" class="social-link" data-cursor-hover aria-label="LinkedIn">
+              <Icon icon="mdi:linkedin" />
+            </a>
+            <a href="#" class="social-link" data-cursor-hover aria-label="Instagram">
+              <Icon icon="mdi:instagram" />
+            </a>
+          </div>
+        </div>
+
+        <!-- RIGHT: FORM -->
+        <form
+          class="contact-form reveal"
+          :class="{ 'is-in': isInView }"
+          @submit.prevent="handleSubmit"
+        >
+          <div class="form-row">
+            <div class="form-group">
+              <label>Name</label>
+              <div class="input-wrap">
+                <Icon icon="mdi:account-outline" class="input-icon" />
+                <input v-model="form.name" type="text" placeholder="John Doe" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Email</label>
+              <div class="input-wrap">
+                <Icon icon="mdi:at" class="input-icon" />
+                <input v-model="form.email" type="email" placeholder="john@email.com" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Subject</label>
+            <div class="input-wrap">
+              <Icon icon="mdi:tag-outline" class="input-icon" />
+              <input v-model="form.subject" type="text" placeholder="Project Inquiry" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Message</label>
+            <div class="input-wrap input-wrap--textarea">
+              <Icon icon="mdi:message-text-outline" class="input-icon input-icon--top" />
+              <textarea
+                v-model="form.message"
+                rows="6"
+                placeholder="Tell me about your project..."
+                required
+              />
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="submit-btn"
+            :disabled="status === 'sending'"
+            :class="status"
+          >
+            <span class="submit-btn__spinner" v-if="status === 'sending'"></span>
+            <span>{{ btnLabel }}</span>
+            <Icon
+              v-if="status === 'idle' || status === 'error'"
+              icon="mdi:arrow-right"
+              class="submit-btn__arrow"
+            />
+          </button>
+
+          <Transition name="status-fade">
+            <p v-if="statusMessage" class="status-msg" :class="status">
+              <Icon :icon="status === 'sent' ? 'mdi:check-circle' : 'mdi:alert-circle'" />
+              {{ statusMessage }}
+            </p>
+          </Transition>
+        </form>
+      </div>
+    </div>
+  </section>
+</template>
+
 <script setup>
-import { ref, computed } from "vue";
-import { sendEmail } from "@/services/email";
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { Icon } from '@iconify/vue'
+
+// NOTE: submit di bawah ini masih SIMULASI (setTimeout) untuk fokus ke desain dulu.
+// Untuk versi fungsional, ganti isi handleSubmit dengan pemanggilan sendEmail()
+// dari @/services/email.js yang sudah disiapkan sebelumnya.
 
 const form = ref({
-  name: "",
-  email: "",
-  subject: "",
-  message: "",
-});
+  name: '',
+  email: '',
+  subject: '',
+  message: '',
+})
 
-const status = ref("idle");
+const status = ref('idle')
 
 const btnLabel = computed(() => {
   switch (status.value) {
-    case "sending":
-      return "Sending...";
-    case "sent":
-      return "Message Sent!";
-    case "error":
-      return "Try Again";
+    case 'sending':
+      return 'Sending...'
+    case 'sent':
+      return 'Message Sent!'
+    case 'error':
+      return 'Try Again'
     default:
-      return "Send Message";
+      return 'Send Message'
   }
-});
+})
 
 const statusMessage = computed(() => {
   switch (status.value) {
-    case "sent":
-      return "✓ Your message has been sent. I'll get back to you soon!";
-    case "error":
-      return "✗ Something went wrong. Please try again.";
+    case 'sent':
+      return "Your message has been sent. I'll get back to you soon!"
+    case 'error':
+      return 'Something went wrong. Please try again.'
     default:
-      return "";
+      return ''
   }
-});
+})
 
 async function handleSubmit() {
-  if (status.value === "sending") return;
+  if (status.value === 'sending') return
 
-  status.value = "sending";
+  status.value = 'sending'
 
-  try {
-    await sendEmail({
-      from_name: form.value.name,
-      from_email: form.value.email,
-      subject: form.value.subject,
-      message: form.value.message,
-    });
+  // --- Placeholder simulasi kirim (hapus saat sudah dihubungkan ke backend) ---
+  await new Promise((resolve) => setTimeout(resolve, 1400))
+  status.value = 'sent'
+  form.value = { name: '', email: '', subject: '', message: '' }
+  // -----------------------------------------------------------------------
 
-    status.value = "sent";
-
-    form.value = {
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    };
-
-    setTimeout(() => {
-      status.value = "idle";
-    }, 4000);
-  } catch (error) {
-    console.error(error);
-
-    status.value = "error";
-
-    setTimeout(() => {
-      status.value = "idle";
-    }, 4000);
-  }
+  setTimeout(() => {
+    status.value = 'idle'
+  }, 4000)
 }
+
+const sectionRef = ref(null)
+const isInView = ref(false)
+
+let observer
+onMounted(() => {
+  const prefersReducedMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches
+
+  if (prefersReducedMotion) {
+    isInView.value = true
+    return
+  }
+
+  observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          isInView.value = true
+          observer.disconnect()
+        }
+      })
+    },
+    { threshold: 0.15 }
+  )
+  if (sectionRef.value) observer.observe(sectionRef.value)
+})
+
+onBeforeUnmount(() => {
+  if (observer) observer.disconnect()
+})
 </script>
 
-<template>
-<form class="contact-form" @submit.prevent="handleSubmit">
-
-<div class="form-row">
-
-<div class="form-group">
-<label>Name</label>
-
-<input
-v-model="form.name"
-type="text"
-placeholder="John Doe"
-required
-/>
-
-</div>
-
-<div class="form-group">
-
-<label>Email</label>
-
-<input
-v-model="form.email"
-type="email"
-placeholder="john@email.com"
-required
-/>
-
-</div>
-
-</div>
-
-<div class="form-group">
-
-<label>Subject</label>
-
-<input
-v-model="form.subject"
-type="text"
-placeholder="Project Inquiry"
-required
-/>
-
-</div>
-
-<div class="form-group">
-
-<label>Message</label>
-
-<textarea
-v-model="form.message"
-rows="6"
-placeholder="Tell me about your project..."
-required
-/>
-
-</div>
-
-<button
-type="submit"
-class="submit-btn"
-:disabled="status==='sending'"
-:class="status"
->
-
-{{ btnLabel }}
-
-</button>
-
-<p
-v-if="statusMessage"
-class="status-msg"
-:class="status"
->
-
-{{ statusMessage }}
-
-</p>
-
-</form>
-</template>
-
-
 <style scoped>
-.contact-item {
+.contact-section {
   background: #0e0e0e;
   padding: 100px 0;
-  border-radius: 15px;
 }
 
 .contact-inner {
@@ -194,16 +258,19 @@ class="status-msg"
   font-weight: 800;
   line-height: 1.05;
   color: #f0f0f0;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
-.accent { color: #d2ff00; }
+.accent {
+  color: #d2ff00;
+}
 
 .contact-sub {
   font-family: 'Space Mono', monospace;
   font-size: 13px;
-  color: #555;
+  color: #666;
   line-height: 1.7;
   margin-bottom: 64px;
+  max-width: 52ch;
 }
 
 /* ── Grid ── */
@@ -215,12 +282,50 @@ class="status-msg"
 }
 
 /* ── Info kiri ── */
-.info-item {
+.info-col {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  margin-bottom: 28px;
 }
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  padding: 14px 0;
+  border-bottom: 1px solid #1a1a1a;
+  transition: padding-left 0.3s ease;
+}
+
+a.info-item:hover {
+  padding-left: 6px;
+}
+
+.info-item__icon {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  border: 1px solid #1e1e1e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d2ff00;
+  font-size: 18px;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+a.info-item:hover .info-item__icon {
+  border-color: rgba(210, 255, 0, 0.4);
+  background: rgba(210, 255, 0, 0.06);
+}
+
+.info-item__text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
 .info-label {
   font-family: 'Space Mono', monospace;
   font-size: 10px;
@@ -228,24 +333,15 @@ class="status-msg"
   text-transform: uppercase;
   color: #3a3a3a;
 }
+
 .info-value {
   font-family: 'Space Mono', monospace;
   font-size: 14px;
   color: #d2ff00;
-  text-decoration: none;
 }
 
-.info-value-mail {
-  font-family: 'Space Mono', monospace;
-  font-size: 14px;
-  color: #d2ff00;
-  text-decoration: none;
-}
-
-.info-value-mail:hover {
-  color: #9fc300;
-  animation: all ease-in 2s;
-
+.info-value--static {
+  color: #d0d0d0;
 }
 
 .divider {
@@ -259,6 +355,7 @@ class="status-msg"
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-bottom: 32px;
 }
 .dot {
   width: 7px;
@@ -270,12 +367,39 @@ class="status-msg"
 }
 @keyframes blink {
   0%, 100% { opacity: 1; }
-  50%       { opacity: 0.25; }
+  50% { opacity: 0.25; }
 }
 .availability-text {
   font-family: 'Space Mono', monospace;
   font-size: 12px;
-  color: #555;
+  color: #666;
+}
+
+.socials {
+  display: flex;
+  gap: 10px;
+}
+
+.social-link {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid #1e1e1e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-size: 19px;
+  text-decoration: none;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+.social-link:hover {
+  transform: translateY(-4px);
+  color: #0e0e0e;
+  background: #d2ff00;
+  border-color: #d2ff00;
 }
 
 /* ── Form ── */
@@ -306,6 +430,30 @@ label {
   color: #3a3a3a;
 }
 
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 14px;
+  color: #3a3a3a;
+  font-size: 16px;
+  pointer-events: none;
+  transition: color 0.25s ease;
+}
+
+.input-icon--top {
+  top: 14px;
+  align-self: flex-start;
+}
+
+.input-wrap:focus-within .input-icon {
+  color: #d2ff00;
+}
+
 input,
 textarea {
   background: #111;
@@ -313,10 +461,10 @@ textarea {
   color: #f0f0f0;
   font-family: 'Space Mono', monospace;
   font-size: 13px;
-  padding: 12px 16px;
-  border-radius: 0;
+  padding: 12px 16px 12px 42px;
+  border-radius: 8px;
   outline: none;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
   width: 100%;
 }
 
@@ -328,6 +476,7 @@ textarea::placeholder {
 input:focus,
 textarea:focus {
   border-color: #d2ff00;
+  box-shadow: 0 0 0 3px rgba(210, 255, 0, 0.08);
 }
 
 textarea {
@@ -337,52 +486,128 @@ textarea {
 }
 
 /* ── Submit button ── */
-.submit-btn{
-width:100%;
-padding:16px;
-background:#d2ff00;
-color:#111;
-border:none;
-cursor:pointer;
-font-weight:bold;
-transition:.25s;
+.submit-btn {
+  width: 100%;
+  padding: 16px;
+  background: #d2ff00;
+  color: #111;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.25s ease, transform 0.2s ease;
 }
 
-.submit-btn:hover{
-background:#e6ff55;
+.submit-btn:hover:not(:disabled) {
+  background: #e6ff55;
+  transform: translateY(-2px);
 }
 
-.submit-btn:disabled{
-cursor:not-allowed;
-opacity:.7;
+.submit-btn:active:not(:disabled) {
+  transform: translateY(0);
 }
 
-.submit-btn.sending{
-background:#444;
-color:white;
+.submit-btn__arrow {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.submit-btn.sent{
-background:#00c853;
-color:white;
+.submit-btn:hover:not(:disabled) .submit-btn__arrow {
+  transform: translateX(4px);
 }
 
-.submit-btn.error{
-background:#ff5252;
-color:white;
+.submit-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.85;
 }
 
-.status-msg{
-margin-top:15px;
-font-size:.9rem;
+.submit-btn.sending {
+  background: #333;
+  color: #d0d0d0;
 }
 
-.status-msg.sent{
-color:#00c853;
+.submit-btn.sent {
+  background: #00c853;
+  color: #0e0e0e;
 }
 
-.status-msg.error{
-color:#ff5252;
+.submit-btn.error {
+  background: #ff5252;
+  color: #0e0e0e;
+}
+
+.submit-btn__spinner {
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.status-msg {
+  margin-top: 15px;
+  font-size: 0.85rem;
+  font-family: 'Space Mono', monospace;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-msg.sent {
+  color: #00c853;
+}
+
+.status-msg.error {
+  color: #ff5252;
+}
+
+.status-fade-enter-active,
+.status-fade-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.status-fade-enter-from,
+.status-fade-leave-to {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+/* ── Scroll reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.info-col.reveal { transition-delay: 0.1s; }
+.contact-form.reveal { transition-delay: 0.2s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transition: none;
+    transform: none;
+  }
+  .dot {
+    animation: none;
+  }
+  .submit-btn__spinner {
+    animation: none;
+  }
 }
 
 /* ── Responsive ── */

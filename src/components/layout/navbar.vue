@@ -9,6 +9,7 @@ const menuOpen = ref(false);
 const links = [
   { id: "home", name: "Home", icon: "material-symbols:home-rounded" },
   { id: "About", name: "About", icon: "proicons:person-circle" },
+  { id: "Journey", name: "Journey", icon: "icon-park-outline:journey" },
   { id: "Service", name: "Solution", icon: "hugeicons:ai-idea" },
   { id: "Project", name: "Project", icon: "mdi:code" },
   { id: "contact", name: "Contact", icon: "bxs:contact" },

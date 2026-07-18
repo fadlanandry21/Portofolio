@@ -36,6 +36,9 @@ defineProps({
 <style scoped>
 .service-card {
   position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   padding: 2.25rem 2rem 2rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 14px;
