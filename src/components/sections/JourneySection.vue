@@ -1,53 +1,3 @@
-<template>
-  <section class="journey-section" id="Journey" ref="sectionRef">
-    <div class="journey-inner">
-      <p class="eyebrow reveal" :class="{ 'is-in': headerInView }">
-        <span class="eyebrow__bracket">[</span>
-        My Journey
-        <span class="eyebrow__bracket">]</span>
-      </p>
-
-      <h2 class="journey-title reveal" :class="{ 'is-in': headerInView }">
-        Journey & Achievements
-      </h2>
-
-      <p class="journey-sub reveal" :class="{ 'is-in': headerInView }">
-        Dari bangku SMK sampai melangkah ke jenjang Computer Science —
-        tiap tahap adalah proses belajar yang membentuk cara saya membangun sesuatu hari ini.
-      </p>
-
-      <ol class="timeline">
-        <li
-          v-for="(item, i) in journey"
-          :key="item.year + item.title"
-          class="timeline-item"
-          :class="[
-            i % 2 === 0 ? 'timeline-item--left' : 'timeline-item--right',
-            { 'is-in': visibleItems[i], 'is-current': item.current },
-          ]"
-          :ref="(el) => setItemRef(el, i)"
-        >
-          <div class="timeline-item__marker">
-            <span class="timeline-item__dot">
-              <Icon :icon="item.icon" />
-            </span>
-            <span v-if="item.current" class="timeline-item__pulse"></span>
-          </div>
-
-          <div class="timeline-item__card" data-cursor-hover>
-            <span class="timeline-item__year">
-              {{ item.year }}
-              <span v-if="item.current" class="timeline-item__badge">Ongoing</span>
-            </span>
-            <h3 class="timeline-item__title">{{ item.title }}</h3>
-            <p class="timeline-item__desc">{{ item.description }}</p>
-          </div>
-        </li>
-      </ol>
-    </div>
-  </section>
-</template>
-
 <script setup>
 import { ref, reactive, onMounted, onBeforeUnmount } from 'vue'
 import { Icon } from '@iconify/vue'
@@ -111,6 +61,60 @@ onBeforeUnmount(() => {
 })
 </script>
 
+
+<template>
+  <section class="journey-section" id="Journey" ref="sectionRef">
+    <div class="journey-inner">
+      <div class="container-eyebrow">
+        <p class="eyebrow reveal" :class="{ 'is-in': headerInView }">
+        <span class="eyebrow__bracket">[</span>
+        My Journey
+        <span class="eyebrow__bracket">]</span>
+      </p>
+
+      <h2 class="journey-title reveal" :class="{ 'is-in': headerInView }">
+        Journey & Achievements
+      </h2>
+
+      <p class="journey-sub reveal" :class="{ 'is-in': headerInView }">
+        Every step of my journey has been shaped by curiosity, continuous learning, and the determination to build solutions that create real value.
+      </p>
+
+      </div>
+      
+
+      <ol class="timeline">
+        <li
+          v-for="(item, i) in journey"
+          :key="item.year + item.title"
+          class="timeline-item"
+          :class="[
+            i % 2 === 0 ? 'timeline-item--left' : 'timeline-item--right',
+            { 'is-in': visibleItems[i], },
+          ]"
+          :ref="(el) => setItemRef(el, i)"
+        >
+          <div class="timeline-item__marker">
+            <span class="timeline-item__dot">
+              <Icon :icon="item.icon" />
+            </span>
+            <span v-if="item.current" class="timeline-item__pulse"></span>
+          </div>
+
+          <div class="timeline-item__card" data-cursor-hover>
+            <span class="timeline-item__year">
+              {{ item.year }}
+              <span v-if="item.current" class="timeline-item__badge">Ongoing</span>
+            </span>
+            <h3 class="timeline-item__title">{{ item.title }}</h3>
+            <p class="timeline-item__desc">{{ item.description }}</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+</template>
+
 <style scoped>
 .journey-section {
   background: #0e0e0e;
@@ -120,6 +124,12 @@ onBeforeUnmount(() => {
 .journey-inner {
   max-width: 1000px;
   margin: 0 auto;
+}
+
+.container-eyebrow {
+display: flex;
+flex-direction: column;
+align-items: center;
 }
 
 .eyebrow {
@@ -152,6 +162,7 @@ onBeforeUnmount(() => {
   line-height: 1.75;
   color: rgba(245, 245, 240, 0.55);
   margin: 0 0 clamp(3rem, 8vw, 5rem);
+  text-align: center;
 }
 
 /* ---------- TIMELINE ---------- */

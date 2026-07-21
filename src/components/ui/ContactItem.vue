@@ -1,3 +1,93 @@
+<script setup>
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { Icon } from '@iconify/vue'
+
+// NOTE: submit di bawah ini masih SIMULASI (setTimeout) untuk fokus ke desain dulu.
+// Untuk versi fungsional, ganti isi handleSubmit dengan pemanggilan sendEmail()
+// dari @/services/email.js yang sudah disiapkan sebelumnya.
+
+const form = ref({
+  name: '',
+  email: '',
+  subject: '',
+  message: '',
+})
+
+const status = ref('idle')
+
+const btnLabel = computed(() => {
+  switch (status.value) {
+    case 'sending':
+      return 'Sending...'
+    case 'sent':
+      return 'Message Sent!'
+    case 'error':
+      return 'Try Again'
+    default:
+      return 'Send Message'
+  }
+})
+
+const statusMessage = computed(() => {
+  switch (status.value) {
+    case 'sent':
+      return "Your message has been sent. I'll get back to you soon!"
+    case 'error':
+      return 'Something went wrong. Please try again.'
+    default:
+      return ''
+  }
+})
+
+async function handleSubmit() {
+  if (status.value === 'sending') return
+
+  status.value = 'sending'
+
+  // --- Placeholder simulasi kirim (hapus saat sudah dihubungkan ke backend) ---
+  await new Promise((resolve) => setTimeout(resolve, 1400))
+  status.value = 'sent'
+  form.value = { name: '', email: '', subject: '', message: '' }
+  // -----------------------------------------------------------------------
+
+  setTimeout(() => {
+    status.value = 'idle'
+  }, 4000)
+}
+
+const sectionRef = ref(null)
+const isInView = ref(false)
+
+let observer
+onMounted(() => {
+  const prefersReducedMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches
+
+  if (prefersReducedMotion) {
+    isInView.value = true
+    return
+  }
+
+  observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          isInView.value = true
+          observer.disconnect()
+        }
+      })
+    },
+    { threshold: 0.15 }
+  )
+  if (sectionRef.value) observer.observe(sectionRef.value)
+})
+
+onBeforeUnmount(() => {
+  if (observer) observer.disconnect()
+})
+</script>
+
 <template>
   <section class="contact-section" id="Contact" ref="sectionRef">
     <div class="contact-inner">
@@ -129,96 +219,6 @@
     </div>
   </section>
 </template>
-
-<script setup>
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
-import { Icon } from '@iconify/vue'
-
-// NOTE: submit di bawah ini masih SIMULASI (setTimeout) untuk fokus ke desain dulu.
-// Untuk versi fungsional, ganti isi handleSubmit dengan pemanggilan sendEmail()
-// dari @/services/email.js yang sudah disiapkan sebelumnya.
-
-const form = ref({
-  name: '',
-  email: '',
-  subject: '',
-  message: '',
-})
-
-const status = ref('idle')
-
-const btnLabel = computed(() => {
-  switch (status.value) {
-    case 'sending':
-      return 'Sending...'
-    case 'sent':
-      return 'Message Sent!'
-    case 'error':
-      return 'Try Again'
-    default:
-      return 'Send Message'
-  }
-})
-
-const statusMessage = computed(() => {
-  switch (status.value) {
-    case 'sent':
-      return "Your message has been sent. I'll get back to you soon!"
-    case 'error':
-      return 'Something went wrong. Please try again.'
-    default:
-      return ''
-  }
-})
-
-async function handleSubmit() {
-  if (status.value === 'sending') return
-
-  status.value = 'sending'
-
-  // --- Placeholder simulasi kirim (hapus saat sudah dihubungkan ke backend) ---
-  await new Promise((resolve) => setTimeout(resolve, 1400))
-  status.value = 'sent'
-  form.value = { name: '', email: '', subject: '', message: '' }
-  // -----------------------------------------------------------------------
-
-  setTimeout(() => {
-    status.value = 'idle'
-  }, 4000)
-}
-
-const sectionRef = ref(null)
-const isInView = ref(false)
-
-let observer
-onMounted(() => {
-  const prefersReducedMotion = window.matchMedia(
-    '(prefers-reduced-motion: reduce)'
-  ).matches
-
-  if (prefersReducedMotion) {
-    isInView.value = true
-    return
-  }
-
-  observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          isInView.value = true
-          observer.disconnect()
-        }
-      })
-    },
-    { threshold: 0.15 }
-  )
-  if (sectionRef.value) observer.observe(sectionRef.value)
-})
-
-onBeforeUnmount(() => {
-  if (observer) observer.disconnect()
-})
-</script>
 
 <style scoped>
 .contact-section {

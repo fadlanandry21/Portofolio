@@ -1,48 +1,3 @@
-<template>
-  <section class="tech-stack-section" ref="sectionRef">
-    <p class="eyebrow reveal" :class="{ 'is-in': isInView }">
-      <span class="eyebrow__bracket">[</span>
-      What I work with
-      <span class="eyebrow__bracket">]</span>
-    </p>
-
-    <h2 class="techStack-title reveal" :class="{ 'is-in': isInView }">
-      Tech Stack
-    </h2>
-
-    <div class="tabs reveal" :class="{ 'is-in': isInView }" role="tablist">
-      <button
-        v-for="tab in tabs"
-        :key="tab.key"
-        class="tabs__item"
-        :class="{ 'is-active': activeTab === tab.key }"
-        role="tab"
-        :aria-selected="activeTab === tab.key"
-        data-cursor-hover
-        @click="activeTab = tab.key"
-      >
-        {{ tab.label }}
-        <span class="tabs__count">{{ countFor(tab.key) }}</span>
-      </button>
-    </div>
-
-    <TransitionGroup
-      name="skill-fade"
-      tag="div"
-      class="skills-grid"
-      role="tabpanel"
-    >
-      <SkillCard
-        v-for="skill in filteredSkills"
-        :key="skill.name"
-        :name="skill.name"
-        :percent="skill.percent"
-        :icon="skill.icon"
-      />
-    </TransitionGroup>
-  </section>
-</template>
-
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import SkillCard from '@/components/ui/SkillCard.vue'
@@ -99,6 +54,51 @@ onBeforeUnmount(() => {
   if (observer) observer.disconnect()
 })
 </script>
+
+<template>
+  <section class="tech-stack-section" ref="sectionRef">
+    <p class="eyebrow reveal" :class="{ 'is-in': isInView }">
+      <span class="eyebrow__bracket">[</span>
+      Core Technologies
+      <span class="eyebrow__bracket">]</span>
+    </p>
+
+    <h2 class="techStack-title reveal" :class="{ 'is-in': isInView }">
+      Tech Stack
+    </h2>
+
+    <div class="tabs reveal" :class="{ 'is-in': isInView }" role="tablist">
+      <button
+        v-for="tab in tabs"
+        :key="tab.key"
+        class="tabs__item"
+        :class="{ 'is-active': activeTab === tab.key }"
+        role="tab"
+        :aria-selected="activeTab === tab.key"
+        data-cursor-hover
+        @click="activeTab = tab.key"
+      >
+        {{ tab.label }}
+        <span class="tabs__count">{{ countFor(tab.key) }}</span>
+      </button>
+    </div>
+
+    <TransitionGroup
+      name="skill-fade"
+      tag="div"
+      class="skills-grid"
+      role="tabpanel"
+    >
+      <SkillCard
+        v-for="skill in filteredSkills"
+        :key="skill.name"
+        :name="skill.name"
+        :percent="skill.percent"
+        :icon="skill.icon"
+      />
+    </TransitionGroup>
+  </section>
+</template>
 
 <style scoped>
 .tech-stack-section {

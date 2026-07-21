@@ -25,8 +25,8 @@ const props = defineProps({
     type: Array,
     default: () => [
       { label: 'Year Of Experience', value: 2, suffix: '+' },
-      { label: 'Complete Project', value: 15, suffix: '+' },
-      { label: 'Happy Client', value: 10, suffix: '+' },
+      { label: 'Complete Project', value: 10, suffix: '+' },
+      { label: 'Happy Client', value: 5, suffix: '+' },
     ],
   },
 })

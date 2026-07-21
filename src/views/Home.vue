@@ -11,6 +11,7 @@ import ProjectSection from "@/components/sections/ProjectSection.vue";
 import ContactSection from "@/components/sections/ContactSection.vue";
 import AnimationBackground from "@/components/animation/BackgroundAnimation.vue";
 import { useLenis } from "@/components/composable/useLenis";
+import FloatingActionMenu from "@/components/composable/FloatingMenu.vue";
 
 useLenis();
 </script>
@@ -18,8 +19,11 @@ useLenis();
 
 <template>
 <AnimationBackground />
-
 <CustomCursor/>
+    <FloatingActionMenu
+      cv-link="/files/CV.Fadlan-Andry-Al-Faris.pdf"
+      certificates-link="#certificates" 
+    />
 
 
 <Navbar/>
@@ -31,6 +35,8 @@ useLenis();
 <ServiceSection/>
 <ProjectSection />
 <ContactSection/>
+
+
 <Footer />
 </template>
 

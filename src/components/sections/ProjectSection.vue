@@ -13,7 +13,7 @@ let animationFrame = null
 let position = 0
 let paused = false
 
-const SPEED = 0.4
+const SPEED = 1
 
 function animate() {
   if (!paused && slider.value) {
@@ -60,13 +60,13 @@ onUnmounted(() => {
       <div>
         <p class="eyebrow">
           <span class="eyebrow__bracket">[</span>
-          Selected work
+          Some Cool stuff I've Built
           <span class="eyebrow__bracket">]</span>
         </p>
         <h2 class="section-title">My Latest Projects</h2>
       </div>
 
-      <router-link to="/projects" class="see-all-link" data-cursor-hover>
+      <router-link to="/Portofolio.vue" class="see-all-link" data-cursor-hover>
         View All
         <span class="see-all-link__arrow">→</span>
       </router-link>
