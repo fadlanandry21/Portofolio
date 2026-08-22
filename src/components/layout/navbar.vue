@@ -12,7 +12,7 @@ const links = [
   { id: "Journey", name: "Journey", icon: "icon-park-outline:journey" },
   { id: "Service", name: "Solution", icon: "hugeicons:ai-idea" },
   { id: "Project", name: "Project", icon: "mdi:code" },
-  { id: "contact", name: "Contact", icon: "bxs:contact" },
+  { id: "Contact", name: "Contact", icon: "bxs:contact" },
 ];
 
 const scrollToSection = (id) => {

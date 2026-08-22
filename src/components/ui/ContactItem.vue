@@ -114,7 +114,7 @@ onBeforeUnmount(() => {
             </span>
             <span class="info-item__text">
               <span class="info-label">Email</span>
-              <span class="info-value">hello@fadlan.dev</span>
+              <span class="info-value">andryalfarisfadlan@gmail.com</span>
             </span>
           </a>
 
@@ -136,10 +136,10 @@ onBeforeUnmount(() => {
           </div>
 
           <div class="socials">
-            <a href="#" class="social-link" data-cursor-hover aria-label="GitHub">
+            <a href="https://github.com/fadlanandry21" class="social-link" data-cursor-hover aria-label="GitHub">
               <Icon icon="mdi:github" />
             </a>
-            <a href="#" class="social-link" data-cursor-hover aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/fadlan-andry-al-faris-a4a759335/" class="social-link" data-cursor-hover aria-label="LinkedIn">
               <Icon icon="mdi:linkedin" />
             </a>
             <a href="#" class="social-link" data-cursor-hover aria-label="Instagram">
@@ -377,19 +377,19 @@ a.info-item:hover .info-item__icon {
 
 .socials {
   display: flex;
-  gap: 10px;
+  gap: 30px;
 }
 
 .social-link {
-  width: 42px;
-  height: 42px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   border: 1px solid #1e1e1e;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #888;
-  font-size: 19px;
+  font-size: 20px;
   text-decoration: none;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
     color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
